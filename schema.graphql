@@ -1,0 +1,5 @@
+type Registry_ModuleRegistration {
+  id: ID!
+  implementation: String!
+  chainId: Int!
+}

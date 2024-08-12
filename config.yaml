@@ -1,0 +1,43 @@
+name: Rhinestone-indexer
+contracts:
+  - name: Registry
+    handler: src/RegistryEventHandlers.ts
+    events:
+      - event: ModuleRegistration(address indexed implementation)
+unordered_multichain_mode: true
+networks:
+  # Optimism
+  - id: 10
+    start_block: 0
+    contracts:
+      - name: Registry
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  # Polygon
+  - id: 137
+    start_block: 0
+    contracts:
+      - name: Registry
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  # Arbitrum
+  - id: 42161
+    start_block: 0
+    contracts:
+      - name: Registry
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  # Base
+  - id: 8453
+    start_block: 0
+    contracts:
+      - name: Registry
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  # Sepolia
+  - id: 11155111
+    start_block: 0
+    contracts:
+      - name: Registry
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
