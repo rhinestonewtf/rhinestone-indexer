@@ -1,43 +1,148 @@
 name: Rhinestone-indexer
+
+# ------------------- Contracts configurations ---------------------
+# ------------------------------------------------------------------
+
 contracts:
   - name: Registry
-    handler: src/RegistryEventHandlers.ts
+    handler: src/handlers/Registry.ts
     events:
+      - event: Attested(address indexed moduleAddress, address indexed attester, bytes32 schemaUID, address indexed sstore2Pointer)
       - event: ModuleRegistration(address indexed implementation)
+      - event: Revoked(address indexed moduleAddress, address indexed revoker, bytes32 schema)
+
+  - name: ColdStorageHook
+    handler: src/handlers/ColdStorage.ts
+    events:
+      - event: TimelockExecuted(address indexed subAccount, bytes32 hash)
+      - event: TimelockRequested(address indexed subAccount, bytes32 hash, uint256 executeAfter)
+
+  - name: ScheduledOrders
+    handler: src/handlers/ScheduledOrders.ts
+    events:
+      - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
+      - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
+      - event: ExecutionsCancelled(address indexed smartAccount)
+
+  - name: ScheduledTransfers
+    handler: src/handlers/ScheduledTransfers.ts
+    events:
+      - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
+      - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
+      - event: ExecutionsCancelled(address indexed smartAccount)
+
+  - name: AutoSavings
+    handler: src/handlers/AutoSavings.ts
+    events:
+      - event: AutoSaveExecuted(address indexed smartAccount, address indexed token, uint256 amountReceived)
+
 unordered_multichain_mode: true
+
+# ------------------- Network configurations ---------------------
+# ----------------------------------------------------------------
+
 networks:
-  # Optimism
+  # Optimism ------------
+  # ---------------------
   - id: 10
     start_block: 0
     contracts:
       - name: Registry
         address:
           - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-  # Polygon
+      - name: ColdStorageHook
+        address:
+          - "0xE0D989D4D908A0Bb9CC801D8A8864276A5780Ab9"
+      - name: ScheduledOrders
+        address:
+          - "0x5341B4E7B347b7dB9e124b15eBa10A5c236ec3bb"
+      - name: ScheduledTransfers
+        address:
+          - "0xF1aE317941efeb1ffB103D959EF58170F1e577E0"
+      - name: AutoSavings
+        address:
+          - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+
+  # Polygon -------------
+  # ---------------------
   - id: 137
     start_block: 0
     contracts:
       - name: Registry
         address:
           - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-  # Arbitrum
+      - name: ColdStorageHook
+        address:
+          - "0xE0D989D4D908A0Bb9CC801D8A8864276A5780Ab9"
+      - name: ScheduledOrders
+        address:
+          - "0x5341B4E7B347b7dB9e124b15eBa10A5c236ec3bb"
+      - name: ScheduledTransfers
+        address:
+          - "0xF1aE317941efeb1ffB103D959EF58170F1e577E0"
+      - name: AutoSavings
+        address:
+          - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+
+  # Arbitrum ------------
+  # ---------------------
   - id: 42161
     start_block: 0
     contracts:
       - name: Registry
         address:
           - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-  # Base
+      - name: ColdStorageHook
+        address:
+          - "0xE0D989D4D908A0Bb9CC801D8A8864276A5780Ab9"
+      - name: ScheduledOrders
+        address:
+          - "0x5341B4E7B347b7dB9e124b15eBa10A5c236ec3bb"
+      - name: ScheduledTransfers
+        address:
+          - "0xF1aE317941efeb1ffB103D959EF58170F1e577E0"
+      - name: AutoSavings
+        address:
+          - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+
+  # Base ---------------
+  # --------------------
   - id: 8453
     start_block: 0
     contracts:
       - name: Registry
         address:
           - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-  # Sepolia
+      - name: ColdStorageHook
+        address:
+          - "0xE0D989D4D908A0Bb9CC801D8A8864276A5780Ab9"
+      - name: ScheduledOrders
+        address:
+          - "0x5341B4E7B347b7dB9e124b15eBa10A5c236ec3bb"
+      - name: ScheduledTransfers
+        address:
+          - "0xF1aE317941efeb1ffB103D959EF58170F1e577E0"
+      - name: AutoSavings
+        address:
+          - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+
+  # Sepolia ------------
+  # --------------------
   - id: 11155111
     start_block: 0
     contracts:
       - name: Registry
         address:
           - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+      - name: ColdStorageHook
+        address:
+          - "0xE0D989D4D908A0Bb9CC801D8A8864276A5780Ab9"
+      - name: ScheduledOrders
+        address:
+          - "0x5341B4E7B347b7dB9e124b15eBa10A5c236ec3bb"
+      - name: ScheduledTransfers
+        address:
+          - "0xF1aE317941efeb1ffB103D959EF58170F1e577E0"
+      - name: AutoSavings
+        address:
+          - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"

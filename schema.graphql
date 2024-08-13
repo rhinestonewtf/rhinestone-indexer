@@ -1,5 +1,84 @@
+type AutoSavings_AutoSaveExecuted {
+  id: ID!
+  smartAccount: String!
+  token: String!
+  amountReceived: BigInt!
+  chainId: Int!
+}
+
+type ColdStorageHook_TimelockExecuted {
+  id: ID!
+  subAccount: String!
+  hash: String!
+  chainId: Int!
+}
+
+type ColdStorageHook_TimelockRequested {
+  id: ID!
+  subAccount: String!
+  hash: String!
+  executeAfter: BigInt!
+  chainId: Int!
+}
+
+type Registry_Attested {
+  id: ID!
+  moduleAddress: String!
+  attester: String!
+  schemaUID: String!
+  chainId: Int!
+}
+
 type Registry_ModuleRegistration {
   id: ID!
   implementation: String!
+  chainId: Int!
+}
+
+type Registry_Revoked {
+  id: ID!
+  moduleAddress: String!
+  revoker: String!
+  schema: String!
+  chainId: Int!
+}
+
+type ScheduledOrders_ExecutionAdded {
+  id: ID!
+  smartAccount: String!
+  jobId: BigInt!
+  chainId: Int!
+}
+
+type ScheduledOrders_ExecutionTriggered {
+  id: ID!
+  smartAccount: String!
+  jobId: BigInt!
+  chainId: Int!
+}
+
+type ScheduledOrders_ExecutionsCancelled {
+  id: ID!
+  smartAccount: String!
+  chainId: Int!
+}
+
+type ScheduledTransfers_ExecutionAdded {
+  id: ID!
+  smartAccount: String!
+  jobId: BigInt!
+  chainId: Int!
+}
+
+type ScheduledTransfers_ExecutionTriggered {
+  id: ID!
+  smartAccount: String!
+  jobId: BigInt!
+  chainId: Int!
+}
+
+type ScheduledTransfers_ExecutionsCancelled {
+  id: ID!
+  smartAccount: String!
   chainId: Int!
 }
