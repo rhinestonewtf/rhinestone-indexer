@@ -1,3 +1,6 @@
+# --------------------------------
+# Auto Savings Entities
+# --------------------------------
 type AutoSavings_AutoSaveExecuted {
   id: ID!
   smartAccount: String!
@@ -6,6 +9,9 @@ type AutoSavings_AutoSaveExecuted {
   chainId: Int!
 }
 
+# --------------------------------
+# Cold Storage Entities
+# --------------------------------
 type ColdStorageHook_TimelockExecuted {
   id: ID!
   subAccount: String!
@@ -21,6 +27,18 @@ type ColdStorageHook_TimelockRequested {
   chainId: Int!
 }
 
+type ColdStorageHook_TimelockQuery {
+  id: ID!
+  subAccount: String!
+  hash: String!
+  executeAfter: BigInt!
+  chainId: Int!
+  isExecuted: Boolean!
+}
+
+# --------------------------------
+# Registry Entities
+# --------------------------------
 type Registry_Attested {
   id: ID!
   moduleAddress: String!
@@ -43,6 +61,9 @@ type Registry_Revoked {
   chainId: Int!
 }
 
+# --------------------------------
+# Scheduled Orders Entities
+# --------------------------------
 type ScheduledOrders_ExecutionAdded {
   id: ID!
   smartAccount: String!
@@ -63,6 +84,9 @@ type ScheduledOrders_ExecutionsCancelled {
   chainId: Int!
 }
 
+# --------------------------------
+# Scheduled Transfers Entities
+# --------------------------------
 type ScheduledTransfers_ExecutionAdded {
   id: ID!
   smartAccount: String!
@@ -83,6 +107,9 @@ type ScheduledTransfers_ExecutionsCancelled {
   chainId: Int!
 }
 
+# --------------------------------
+# Smart Account Entities
+# --------------------------------
 type SmartAccount_ModuleInstalled {
   id: ID!
   moduleTypeId: BigInt!
@@ -94,5 +121,13 @@ type SmartAccount_ModuleUninstalled {
   id: ID!
   moduleTypeId: BigInt!
   moduleAddress: String!
+  chainId: Int!
+}
+
+type SmartAccount_ModuleQuery {
+  id: ID!
+  moduleTypeId: BigInt!
+  moduleAddress: String!
+  isInstalled: Boolean!
   chainId: Int!
 }
