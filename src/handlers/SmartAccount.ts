@@ -42,7 +42,7 @@ const addModuleToQuery = ({
   context: SmartAccountContract_ModuleInstalledEvent_handlerContext;
 }): void => {
   const module = context.SmartAccount_ModuleQuery.get(
-    `${event.srcAddress}-${event.params.moduleAddress}`
+    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`
   );
 
   if (!module) {
@@ -68,7 +68,7 @@ const removeModuleFromQuery = ({
   context: SmartAccountContract_ModuleUninstalledEvent_handlerContext;
 }): void => {
   const module = context.SmartAccount_ModuleQuery.get(
-    `${event.srcAddress}-${event.params.moduleAddress}`
+    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`
   );
 
   if (module) {

@@ -42,7 +42,7 @@ const createTimelockQuery = ({
   context: ColdStorageHookContract_TimelockRequestedEvent_handlerContext;
 }) => {
   const entity: ColdStorageHook_TimelockQueryEntity = {
-    id: `${event.params.subAccount}_${event.params.hash}`,
+    id: `${event.chainId}_${event.params.subAccount}_${event.params.hash}`,
     subAccount: event.params.subAccount,
     hash: event.params.hash,
     executeAfter: event.params.executeAfter,
@@ -61,7 +61,7 @@ const updateTimelockQuery = ({
   context: ColdStorageHookContract_TimelockRequestedEvent_handlerContext;
 }) => {
   const entity = context.ColdStorageHook_TimelockQuery.get(
-    `${event.params.subAccount}_${event.params.hash}`
+    `${event.chainId}_${event.params.subAccount}_${event.params.hash}`
   );
 
   if (entity) {
