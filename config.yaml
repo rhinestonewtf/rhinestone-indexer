@@ -36,6 +36,12 @@ contracts:
     events:
       - event: AutoSaveExecuted(address indexed smartAccount, address indexed token, uint256 amountReceived)
 
+  - name: SmartAccount
+    handler: src/handlers/SmartAccount.ts
+    events:
+      - event: ModuleInstalled(uint256 moduleTypeId, address moduleAddress)
+      - event: ModuleUninstalled(uint256 moduleTypeId, address moduleAddress)
+
 unordered_multichain_mode: true
 
 # ------------------- Network configurations ---------------------
@@ -62,6 +68,8 @@ networks:
       - name: AutoSavings
         address:
           - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+      - name: SmartAccount
+        address:
 
   # Polygon -------------
   # ---------------------
@@ -83,6 +91,7 @@ networks:
       - name: AutoSavings
         address:
           - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+      - name: SmartAccount
 
   # Arbitrum ------------
   # ---------------------
@@ -104,6 +113,7 @@ networks:
       - name: AutoSavings
         address:
           - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+      - name: SmartAccount
 
   # Base ---------------
   # --------------------
@@ -125,6 +135,7 @@ networks:
       - name: AutoSavings
         address:
           - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+      - name: SmartAccount
 
   # Sepolia ------------
   # --------------------
@@ -146,3 +157,4 @@ networks:
       - name: AutoSavings
         address:
           - "0x38A1deabBB1A0EA05Ee05C780217A138C7138C31"
+      - name: SmartAccount

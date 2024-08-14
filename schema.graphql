@@ -82,3 +82,17 @@ type ScheduledTransfers_ExecutionsCancelled {
   smartAccount: String!
   chainId: Int!
 }
+
+type SmartAccount_ModuleInstalled {
+  id: ID!
+  moduleTypeId: BigInt!
+  moduleAddress: String!
+  chainId: Int!
+}
+
+type SmartAccount_ModuleUninstalled {
+  id: ID!
+  moduleTypeId: BigInt!
+  moduleAddress: String!
+  chainId: Int!
+}
