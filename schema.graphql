@@ -84,6 +84,20 @@ type ScheduledOrders_ExecutionsCancelled {
   chainId: Int!
 }
 
+type ScheduledOrders_ExecutionQuery {
+  id: ID!
+  smartAccount: String!
+  jobId: BigInt!
+  chainId: Int!
+  executeInterval: BigInt!
+  numberOfExecutions: BigInt!
+  numberOfExecutionsCompleted: BigInt!
+  startDate: BigInt!
+  isEnabled: Boolean!
+  lastExecutionTime: BigInt!
+  executionData: Bytes!
+}
+
 # --------------------------------
 # Scheduled Transfers Entities
 # --------------------------------
@@ -105,6 +119,20 @@ type ScheduledTransfers_ExecutionsCancelled {
   id: ID!
   smartAccount: String!
   chainId: Int!
+}
+
+type ScheduledTransfers_ExecutionQuery {
+  id: ID!
+  smartAccount: String!
+  jobId: BigInt!
+  chainId: Int!
+  executeInterval: BigInt!
+  numberOfExecutions: BigInt!
+  numberOfExecutionsCompleted: BigInt!
+  startDate: BigInt!
+  isEnabled: Boolean!
+  lastExecutionTime: BigInt!
+  executionData: Bytes!
 }
 
 # --------------------------------
