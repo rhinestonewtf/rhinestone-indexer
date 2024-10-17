@@ -1,4 +1,10 @@
 name: Rhinestone-indexer
+field_selection:
+  transaction_fields:
+    - "from"
+    - "to"
+    - "hash"
+    - "transactionIndex"
 
 # ------------------- Contracts configurations ---------------------
 # ------------------------------------------------------------------
@@ -21,18 +27,14 @@ contracts:
     handler: src/handlers/ScheduledOrders.ts
     events:
       - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
-        isAsync: true
       - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
-        isAsync: true
       - event: ExecutionsCancelled(address indexed smartAccount)
 
   - name: ScheduledTransfers
     handler: src/handlers/ScheduledTransfers.ts
     events:
       - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
-        isAsync: true
       - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
-        isAsync: true
       - event: ExecutionsCancelled(address indexed smartAccount)
 
   - name: AutoSavings

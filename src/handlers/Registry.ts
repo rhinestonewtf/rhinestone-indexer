@@ -1,13 +1,13 @@
 import {
-  RegistryContract,
-  Registry_ModuleRegistrationEntity,
-  Registry_AttestedEntity,
-  Registry_RevokedEntity,
+  Registry,
+  Registry_ModuleRegistration,
+  Registry_Attested,
+  Registry_Revoked,
 } from "generated";
 
-RegistryContract.Attested.handler(({ event, context }) => {
-  const entity: Registry_AttestedEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
+Registry.Attested.handler(async ({ event, context }) => {
+  const entity: Registry_Attested = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
     moduleAddress: event.params.moduleAddress,
     attester: event.params.attester,
     schemaUID: event.params.schemaUID,
@@ -17,9 +17,9 @@ RegistryContract.Attested.handler(({ event, context }) => {
   context.Registry_Attested.set(entity);
 });
 
-RegistryContract.Revoked.handler(({ event, context }) => {
-  const entity: Registry_RevokedEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
+Registry.Revoked.handler(async ({ event, context }) => {
+  const entity: Registry_Revoked = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
     moduleAddress: event.params.moduleAddress,
     revoker: event.params.revoker,
     schema: event.params.schema,
@@ -29,9 +29,9 @@ RegistryContract.Revoked.handler(({ event, context }) => {
   context.Registry_Revoked.set(entity);
 });
 
-RegistryContract.ModuleRegistration.handler(({ event, context }) => {
-  const entity: Registry_ModuleRegistrationEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
+Registry.ModuleRegistration.handler(async ({ event, context }) => {
+  const entity: Registry_ModuleRegistration = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
     implementation: event.params.implementation,
     chainId: event.chainId,
   };

@@ -1,8 +1,8 @@
 import assert from "assert";
-import { TestHelpers, AutoSavings_AutoSaveExecutedEntity } from "generated";
+import { TestHelpers, AutoSavings_AutoSaveExecuted } from "generated";
 const { MockDb, AutoSavings } = TestHelpers;
 
-describe("AutoSavings contract AutoSaveExecuted event tests", () => {
+describe("AutoSavings contract AutoSaveExecuted event tests", async () => {
   // Create mock db
   const mockDb = MockDb.createMockDb();
 
@@ -12,22 +12,22 @@ describe("AutoSavings contract AutoSaveExecuted event tests", () => {
   });
 
   // Processing the event
-  const mockDbUpdated = AutoSavings.AutoSaveExecuted.processEvent({
+  const mockDbUpdated = await AutoSavings.AutoSaveExecuted.processEvent({
     event,
     mockDb,
   });
 
-  it("AutoSavings_AutoSaveExecutedEntity is created correctly", () => {
+  it("AutoSavings_AutoSaveExecutedEntity is created correctly", async () => {
     // Getting the actual entity from the mock database
     let actualAutoSavingsAutoSaveExecutedEntity =
-      mockDbUpdated.entities.AutoSavings_AutoSaveExecuted.get(
-        `${event.transactionHash}_${event.logIndex}`
+      await mockDbUpdated.entities.AutoSavings_AutoSaveExecuted.get(
+        `${event.transaction.hash}_${event.logIndex}`,
       );
 
     // Creating the expected entity
-    const expectedAutoSavingsAutoSaveExecutedEntity: AutoSavings_AutoSaveExecutedEntity =
+    const expectedAutoSavingsAutoSaveExecutedEntity: AutoSavings_AutoSaveExecuted =
       {
-        id: `${event.transactionHash}_${event.logIndex}`,
+        id: `${event.transaction.hash}_${event.logIndex}`,
         smartAccount: event.params.smartAccount,
         token: event.params.token,
         amountReceived: event.params.amountReceived,
@@ -37,7 +37,7 @@ describe("AutoSavings contract AutoSaveExecuted event tests", () => {
     assert.deepEqual(
       actualAutoSavingsAutoSaveExecutedEntity,
       expectedAutoSavingsAutoSaveExecutedEntity,
-      "Actual AutoSavingsAutoSaveExecutedEntity should be the same as the expectedAutoSavingsAutoSaveExecutedEntity"
+      "Actual AutoSavingsAutoSaveExecutedEntity should be the same as the expectedAutoSavingsAutoSaveExecutedEntity",
     );
   });
 });

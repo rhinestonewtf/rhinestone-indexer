@@ -1,17 +1,16 @@
 import {
-  ColdStorageHookContract,
-  ColdStorageHook_TimelockExecutedEntity,
-  ColdStorageHook_TimelockRequestedEntity,
-  ColdStorageHook_TimelockQueryEntity,
-  ColdStorageHookContract_TimelockRequestedEvent_eventArgs,
-  ColdStorageHookContract_TimelockRequestedEvent_handlerContext,
+  ColdStorageHook,
+  ColdStorageHook_TimelockExecuted,
+  ColdStorageHook_TimelockRequested,
+  ColdStorageHook_TimelockQuery,
+  ColdStorageHook_TimelockRequested_eventArgs,
   eventLog,
-  ColdStorageHookContract_TimelockExecutedEvent_eventArgs,
+  ColdStorageHook_TimelockExecuted_eventArgs,
 } from "generated";
 
-ColdStorageHookContract.TimelockRequested.handler(({ event, context }) => {
-  const entity: ColdStorageHook_TimelockRequestedEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
+ColdStorageHook.TimelockRequested.handler(async ({ event, context }) => {
+  const entity: ColdStorageHook_TimelockRequested = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
     subAccount: event.params.subAccount,
     hash: event.params.hash,
     executeAfter: event.params.executeAfter,
@@ -22,9 +21,9 @@ ColdStorageHookContract.TimelockRequested.handler(({ event, context }) => {
   createTimelockQuery({ event, context });
 });
 
-ColdStorageHookContract.TimelockExecuted.handler(({ event, context }) => {
-  const entity: ColdStorageHook_TimelockExecutedEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
+ColdStorageHook.TimelockExecuted.handler(async ({ event, context }) => {
+  const entity: ColdStorageHook_TimelockExecuted = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
     subAccount: event.params.subAccount,
     hash: event.params.hash,
     chainId: event.chainId,
@@ -38,10 +37,10 @@ const createTimelockQuery = ({
   event,
   context,
 }: {
-  event: eventLog<ColdStorageHookContract_TimelockRequestedEvent_eventArgs>;
-  context: ColdStorageHookContract_TimelockRequestedEvent_handlerContext;
+  event: eventLog<ColdStorageHook_TimelockRequested_eventArgs>;
+  context: any;
 }) => {
-  const entity: ColdStorageHook_TimelockQueryEntity = {
+  const entity: ColdStorageHook_TimelockQuery = {
     id: `${event.chainId}_${event.params.subAccount}_${event.params.hash}`,
     subAccount: event.params.subAccount,
     hash: event.params.hash,
@@ -53,15 +52,15 @@ const createTimelockQuery = ({
   context.ColdStorageHook_TimelockQuery.set(entity);
 };
 
-const updateTimelockQuery = ({
+const updateTimelockQuery = async ({
   event,
   context,
 }: {
-  event: eventLog<ColdStorageHookContract_TimelockExecutedEvent_eventArgs>;
-  context: ColdStorageHookContract_TimelockRequestedEvent_handlerContext;
+  event: eventLog<ColdStorageHook_TimelockExecuted_eventArgs>;
+  context: any;
 }) => {
-  const entity = context.ColdStorageHook_TimelockQuery.get(
-    `${event.chainId}_${event.params.subAccount}_${event.params.hash}`
+  const entity = await context.ColdStorageHook_TimelockQuery.get(
+    `${event.chainId}_${event.params.subAccount}_${event.params.hash}`,
   );
 
   if (entity) {
