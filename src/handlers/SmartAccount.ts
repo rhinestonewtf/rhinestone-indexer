@@ -23,17 +23,22 @@ SmartAccount.ModuleInstalled.handler(
   },
 );
 
-SmartAccount.ModuleUninstalled.handler(async ({ event, context }) => {
-  const entity: SmartAccount_ModuleUninstalled = {
-    id: `${event.transaction.hash}_${event.logIndex}`,
-    moduleTypeId: event.params.moduleTypeId,
-    moduleAddress: event.params.moduleAddress,
-    chainId: event.chainId,
-  };
+SmartAccount.ModuleUninstalled.handler(
+  async ({ event, context }) => {
+    const entity: SmartAccount_ModuleUninstalled = {
+      id: `${event.transaction.hash}_${event.logIndex}`,
+      moduleTypeId: event.params.moduleTypeId,
+      moduleAddress: event.params.moduleAddress,
+      chainId: event.chainId,
+    };
 
-  context.SmartAccount_ModuleUninstalled.set(entity);
-  removeModuleFromQuery({ event, context });
-});
+    context.SmartAccount_ModuleUninstalled.set(entity);
+    removeModuleFromQuery({ event, context });
+  },
+  {
+    wildcard: true,
+  },
+);
 
 const addModuleToQuery = async ({ event, context }): Promise<void> => {
   const module = await context.SmartAccount_ModuleQuery.get(
