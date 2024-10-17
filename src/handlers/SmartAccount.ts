@@ -1,52 +1,52 @@
 import {
-  SmartAccountContract,
-  SmartAccountContract_ModuleInstalledEvent_eventArgs,
-  SmartAccountContract_ModuleInstalledEvent_handlerContext,
-  SmartAccount_ModuleInstalledEntity,
-  SmartAccount_ModuleUninstalledEntity,
-  SmartAccount_ModuleQueryEntity,
+  SmartAccount,
+  SmartAccount_ModuleInstalled,
+  SmartAccount_ModuleUninstalled,
+  SmartAccount_ModuleQuery,
   eventLog,
-  SmartAccountContract_ModuleUninstalledEvent_eventArgs,
-  SmartAccountContract_ModuleUninstalledEvent_handlerContext,
 } from "generated";
 
-SmartAccountContract.ModuleInstalled.handler(({ event, context }) => {
-  const entity: SmartAccount_ModuleInstalledEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
-    moduleTypeId: event.params.moduleTypeId,
-    moduleAddress: event.params.moduleAddress,
-    chainId: event.chainId,
-  };
+SmartAccount.ModuleInstalled.handler(
+  async ({ event, context }) => {
+    const entity: SmartAccount_ModuleInstalled = {
+      id: `${event.transaction.hash}_${event.logIndex}`,
+      moduleTypeId: event.params.moduleTypeId,
+      moduleAddress: event.params.moduleAddress,
+      chainId: event.chainId,
+    };
 
-  context.SmartAccount_ModuleInstalled.set(entity);
-  addModuleToQuery({ event, context });
-});
+    context.SmartAccount_ModuleInstalled.set(entity);
+    addModuleToQuery({ event, context });
+  },
+  {
+    wildcard: true,
+  },
+);
 
-SmartAccountContract.ModuleUninstalled.handler(({ event, context }) => {
-  const entity: SmartAccount_ModuleUninstalledEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
-    moduleTypeId: event.params.moduleTypeId,
-    moduleAddress: event.params.moduleAddress,
-    chainId: event.chainId,
-  };
+SmartAccount.ModuleUninstalled.handler(
+  async ({ event, context }) => {
+    const entity: SmartAccount_ModuleUninstalled = {
+      id: `${event.transaction.hash}_${event.logIndex}`,
+      moduleTypeId: event.params.moduleTypeId,
+      moduleAddress: event.params.moduleAddress,
+      chainId: event.chainId,
+    };
 
-  context.SmartAccount_ModuleUninstalled.set(entity);
-  removeModuleFromQuery({ event, context });
-});
+    context.SmartAccount_ModuleUninstalled.set(entity);
+    removeModuleFromQuery({ event, context });
+  },
+  {
+    wildcard: true,
+  },
+);
 
-const addModuleToQuery = ({
-  event,
-  context,
-}: {
-  event: eventLog<SmartAccountContract_ModuleInstalledEvent_eventArgs>;
-  context: SmartAccountContract_ModuleInstalledEvent_handlerContext;
-}): void => {
-  const module = context.SmartAccount_ModuleQuery.get(
-    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`
+const addModuleToQuery = async ({ event, context }): Promise<void> => {
+  const module = await context.SmartAccount_ModuleQuery.get(
+    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`,
   );
 
   if (!module) {
-    const entity: SmartAccount_ModuleQueryEntity = {
+    const entity: SmartAccount_ModuleQuery = {
       id: `${event.srcAddress}-${event.params.moduleAddress}`,
       moduleTypeId: event.params.moduleTypeId,
       moduleAddress: event.params.moduleAddress,
@@ -60,15 +60,9 @@ const addModuleToQuery = ({
   }
 };
 
-const removeModuleFromQuery = ({
-  event,
-  context,
-}: {
-  event: eventLog<SmartAccountContract_ModuleUninstalledEvent_eventArgs>;
-  context: SmartAccountContract_ModuleUninstalledEvent_handlerContext;
-}): void => {
+const removeModuleFromQuery = async ({ event, context }) => {
   const module = context.SmartAccount_ModuleQuery.get(
-    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`
+    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`,
   );
 
   if (module) {

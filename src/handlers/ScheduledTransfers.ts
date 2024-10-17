@@ -1,48 +1,40 @@
 import {
-  ScheduledTransfersContract,
-  ScheduledTransfersContract_ExecutionAddedEvent_eventArgs,
-  ScheduledTransfersContract_ExecutionAddedEvent_handlerContextAsync,
-  ScheduledTransfersContract_ExecutionTriggeredEvent_eventArgs,
-  ScheduledTransfersContract_ExecutionTriggeredEvent_handlerContextAsync,
-  ScheduledTransfers_ExecutionAddedEntity,
-  ScheduledTransfers_ExecutionTriggeredEntity,
-  ScheduledTransfers_ExecutionsCancelledEntity,
+  ScheduledTransfers,
+  ScheduledTransfers_ExecutionAdded,
+  ScheduledTransfers_ExecutionTriggered,
+  ScheduledTransfers_ExecutionsCancelled,
   eventLog,
-  scheduledTransfers_ExecutionQueryEntity,
+  scheduledTransfers_ExecutionQuery,
 } from "generated";
 import { getExecutionDetails } from "./ScheduledOrders";
 
-ScheduledTransfersContract.ExecutionAdded.handlerAsync(
-  async ({ event, context }) => {
-    const entity: ScheduledTransfers_ExecutionAddedEntity = {
-      id: `${event.transactionHash}_${event.logIndex}`,
-      smartAccount: event.params.smartAccount,
-      jobId: event.params.jobId,
-      chainId: event.chainId,
-    };
+ScheduledTransfers.ExecutionAdded.handler(async ({ event, context }) => {
+  const entity: ScheduledTransfers_ExecutionAdded = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
+    smartAccount: event.params.smartAccount,
+    jobId: event.params.jobId,
+    chainId: event.chainId,
+  };
 
-    context.ScheduledTransfers_ExecutionAdded.set(entity);
-    await addExecutionQuery({ event, context });
-  }
-);
+  context.ScheduledTransfers_ExecutionAdded.set(entity);
+  await addExecutionQuery({ event, context });
+});
 
-ScheduledTransfersContract.ExecutionTriggered.handlerAsync(
-  async ({ event, context }) => {
-    const entity: ScheduledTransfers_ExecutionTriggeredEntity = {
-      id: `${event.transactionHash}_${event.logIndex}`,
-      smartAccount: event.params.smartAccount,
-      jobId: event.params.jobId,
-      chainId: event.chainId,
-    };
+ScheduledTransfers.ExecutionTriggered.handler(async ({ event, context }) => {
+  const entity: ScheduledTransfers_ExecutionTriggered = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
+    smartAccount: event.params.smartAccount,
+    jobId: event.params.jobId,
+    chainId: event.chainId,
+  };
 
-    context.ScheduledTransfers_ExecutionTriggered.set(entity);
-    await incrementExecutionQuery({ event, context });
-  }
-);
+  context.ScheduledTransfers_ExecutionTriggered.set(entity);
+  await incrementExecutionQuery({ event, context });
+});
 
-ScheduledTransfersContract.ExecutionsCancelled.handler(({ event, context }) => {
-  const entity: ScheduledTransfers_ExecutionsCancelledEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
+ScheduledTransfers.ExecutionsCancelled.handler(async ({ event, context }) => {
+  const entity: ScheduledTransfers_ExecutionsCancelled = {
+    id: `${event.transaction.hash}_${event.logIndex}`,
     smartAccount: event.params.smartAccount,
     chainId: event.chainId,
   };
@@ -50,13 +42,7 @@ ScheduledTransfersContract.ExecutionsCancelled.handler(({ event, context }) => {
   context.ScheduledTransfers_ExecutionsCancelled.set(entity);
 });
 
-const addExecutionQuery = async ({
-  event,
-  context,
-}: {
-  event: eventLog<ScheduledTransfersContract_ExecutionAddedEvent_eventArgs>;
-  context: ScheduledTransfersContract_ExecutionAddedEvent_handlerContextAsync;
-}) => {
+const addExecutionQuery = async ({ event, context }) => {
   const [
     executeInterval,
     numberOfExecutions,
@@ -67,7 +53,7 @@ const addExecutionQuery = async ({
     executionData,
   ] = await getExecutionDetails({ event });
 
-  const entity: scheduledTransfers_ExecutionQueryEntity = {
+  const entity: scheduledTransfers_ExecutionQuery = {
     id: `${event.chainId}-${event.params.smartAccount}-${event.params.jobId}`,
     smartAccount: event.srcAddress,
     jobId: event.params.jobId,
@@ -84,22 +70,16 @@ const addExecutionQuery = async ({
   context.ScheduledTransfers_ExecutionQuery.set(entity);
 };
 
-const incrementExecutionQuery = async ({
-  event,
-  context,
-}: {
-  event: eventLog<ScheduledTransfersContract_ExecutionTriggeredEvent_eventArgs>;
-  context: ScheduledTransfersContract_ExecutionTriggeredEvent_handlerContextAsync;
-}) => {
+const incrementExecutionQuery = async ({ event, context }) => {
   const entity = await context.ScheduledTransfers_ExecutionQuery.get(
-    `${event.chainId}-${event.params.smartAccount}-${event.params.jobId}`
+    `${event.chainId}-${event.params.smartAccount}-${event.params.jobId}`,
   );
 
   if (entity) {
     context.ScheduledTransfers_ExecutionQuery.set({
       ...entity,
       numberOfExecutionsCompleted: BigInt(
-        Number(entity.numberOfExecutionsCompleted) + Number(1n)
+        Number(entity.numberOfExecutionsCompleted) + Number(1n),
       ),
     });
   }

@@ -1,16 +1,15 @@
-import {
-  AutoSavingsContract,
-  AutoSavings_AutoSaveExecutedEntity,
-} from "generated";
+import { AutoSavings, AutoSavings_AutoSaveExecuted } from "generated";
 
-AutoSavingsContract.AutoSaveExecuted.handler(({ event, context }) => {
-  const entity: AutoSavings_AutoSaveExecutedEntity = {
-    id: `${event.transactionHash}_${event.logIndex}`,
-    smartAccount: event.params.smartAccount,
-    token: event.params.token,
-    amountReceived: event.params.amountReceived,
-    chainId: event.chainId,
-  };
+AutoSavings.AutoSaveExecuted.handler(
+  async ({ event, context }: { event: any; context: any }) => {
+    const entity: AutoSavings_AutoSaveExecuted = {
+      id: `${event.transaction.hash}_${event.logIndex}`,
+      smartAccount: event.params.smartAccount,
+      token: event.params.token,
+      amountReceived: event.params.amountReceived,
+      chainId: event.chainId,
+    };
 
-  context.AutoSavings_AutoSaveExecuted.set(entity);
-});
+    context.AutoSavings_AutoSaveExecuted.set(entity);
+  },
+);
