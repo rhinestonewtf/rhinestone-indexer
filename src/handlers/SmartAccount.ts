@@ -10,6 +10,7 @@ SmartAccount.ModuleInstalled.handler(
   async ({ event, context }) => {
     const entity: SmartAccount_ModuleInstalled = {
       id: `${event.transaction.hash}_${event.logIndex}`,
+      smartAccount: event.srcAddress,
       moduleTypeId: event.params.moduleTypeId,
       moduleAddress: event.params.moduleAddress,
       chainId: event.chainId,
@@ -27,6 +28,7 @@ SmartAccount.ModuleUninstalled.handler(
   async ({ event, context }) => {
     const entity: SmartAccount_ModuleUninstalled = {
       id: `${event.transaction.hash}_${event.logIndex}`,
+      smartAccount: event.srcAddress,
       moduleTypeId: event.params.moduleTypeId,
       moduleAddress: event.params.moduleAddress,
       chainId: event.chainId,
@@ -48,6 +50,7 @@ const addModuleToQuery = async ({ event, context }): Promise<void> => {
   if (!module) {
     const entity: SmartAccount_ModuleQuery = {
       id: `${event.srcAddress}-${event.params.moduleAddress}`,
+      smartAccount: event.srcAddress,
       moduleTypeId: event.params.moduleTypeId,
       moduleAddress: event.params.moduleAddress,
       isInstalled: true,

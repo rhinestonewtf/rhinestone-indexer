@@ -140,6 +140,7 @@ type ScheduledTransfers_ExecutionQuery {
 # --------------------------------
 type SmartAccount_ModuleInstalled {
   id: ID!
+  smartAccount: String!
   moduleTypeId: BigInt!
   moduleAddress: String!
   chainId: Int!
@@ -147,6 +148,7 @@ type SmartAccount_ModuleInstalled {
 
 type SmartAccount_ModuleUninstalled {
   id: ID!
+  smartAccount: String!
   moduleTypeId: BigInt!
   moduleAddress: String!
   chainId: Int!
@@ -154,6 +156,7 @@ type SmartAccount_ModuleUninstalled {
 
 type SmartAccount_ModuleQuery {
   id: ID!
+  smartAccount: String!
   moduleTypeId: BigInt!
   moduleAddress: String!
   isInstalled: Boolean!
