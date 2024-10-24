@@ -64,7 +64,7 @@ const addModuleToQuery = async ({ event, context }): Promise<void> => {
 };
 
 const removeModuleFromQuery = async ({ event, context }) => {
-  const module = context.SmartAccount_ModuleQuery.get(
+  const module = await context.SmartAccount_ModuleQuery.get(
     `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`,
   );
 
