@@ -12,7 +12,7 @@ SmartAccount.ModuleInstalled.handler(
       id: `${event.transaction.hash}_${event.logIndex}`,
       smartAccount: event.srcAddress,
       moduleTypeId: event.params.moduleTypeId,
-      moduleAddress: event.params.moduleAddress,
+      moduleAddress: event.params.module,
       chainId: event.chainId,
     };
 
@@ -30,7 +30,7 @@ SmartAccount.ModuleUninstalled.handler(
       id: `${event.transaction.hash}_${event.logIndex}`,
       smartAccount: event.srcAddress,
       moduleTypeId: event.params.moduleTypeId,
-      moduleAddress: event.params.moduleAddress,
+      moduleAddress: event.params.module,
       chainId: event.chainId,
     };
 
@@ -44,15 +44,15 @@ SmartAccount.ModuleUninstalled.handler(
 
 const addModuleToQuery = async ({ event, context }): Promise<void> => {
   const module = await context.SmartAccount_ModuleQuery.get(
-    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`,
+    `${event.chainId}-${event.srcAddress}-${event.params.module}`,
   );
 
   if (!module) {
     const entity: SmartAccount_ModuleQuery = {
-      id: `${event.srcAddress}-${event.params.moduleAddress}`,
+      id: `${event.srcAddress}-${event.params.module}`,
       smartAccount: event.srcAddress,
       moduleTypeId: event.params.moduleTypeId,
-      moduleAddress: event.params.moduleAddress,
+      moduleAddress: event.params.module,
       isInstalled: true,
       chainId: event.chainId,
     };
@@ -65,7 +65,7 @@ const addModuleToQuery = async ({ event, context }): Promise<void> => {
 
 const removeModuleFromQuery = async ({ event, context }) => {
   const module = await context.SmartAccount_ModuleQuery.get(
-    `${event.chainId}-${event.srcAddress}-${event.params.moduleAddress}`,
+    `${event.chainId}-${event.srcAddress}-${event.params.module}`,
   );
 
   if (module) {

@@ -44,8 +44,8 @@ contracts:
   - name: SmartAccount
     handler: src/handlers/SmartAccount.ts
     events:
-      - event: ModuleInstalled(uint256 moduleTypeId, address moduleAddress)
-      - event: ModuleUninstalled(uint256 moduleTypeId, address moduleAddress)
+      - event: ModuleInstalled(uint256 moduleTypeId, address module)
+      - event: ModuleUninstalled(uint256 moduleTypeId, address module)
 
 unordered_multichain_mode: true
 
