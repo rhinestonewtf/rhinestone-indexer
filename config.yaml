@@ -5,6 +5,8 @@ field_selection:
     - "to"
     - "hash"
     - "transactionIndex"
+
+rollback_on_reorg: false
 # ------------------- Contracts configurations ---------------------
 # ------------------------------------------------------------------
 
