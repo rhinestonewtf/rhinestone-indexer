@@ -12,9 +12,11 @@ rollback_on_reorg: false
 # ------------------------------------------------------------------
 
 contracts:
-  - name: CompactLocker
-    handler: src/handlers/CompactLocker.ts
+  - name: OmniAccount
+    handler: src/handlers/OmniAccount.ts
     events:
+      - event: event Deposited(uint256 indexed nonce)
+      - event: event Filled(bytes32 indexed fillDataHash)
 
   # - name: Registry
   #   handler: src/handlers/Registry.ts
@@ -60,6 +62,15 @@ unordered_multichain_mode: true
 # ----------------------------------------------------------------
 
 networks:
+  # Eth Mainnet ---------
+  # ---------------------
+  - id: 1
+    start_block: 21794073
+    contracts:
+      - name: OmniAccount
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+
   # Optimism ------------
   # ---------------------
   - id: 10
@@ -81,6 +92,9 @@ networks:
       #   address:
       #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
       # - name: SmartAccount
+      - name: OmniAccount
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
 
   # Polygon -------------
   # ---------------------
@@ -103,6 +117,9 @@ networks:
       #   address:
       #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
       # - name: SmartAccount
+      - name: OmniAccount
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
 
   # Arbitrum ------------
   # ---------------------
@@ -125,6 +142,9 @@ networks:
       #   address:
       #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
       # - name: SmartAccount
+      - name: OmniAccount
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
 
   # Base ---------------
   # --------------------
@@ -147,6 +167,9 @@ networks:
       #   address:
       #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
       # - name: SmartAccount
+      - name: OmniAccount
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
 
   # Avalanche ---------------
   # --------------------
@@ -257,3 +280,6 @@ networks:
       #   address:
       #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
       # - name: SmartAccount
+      - name: OmniAccount
+        address:
+          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"

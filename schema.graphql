@@ -62,6 +62,21 @@ type Registry_Revoked {
 }
 
 # --------------------------------
+# OmniAccount Entities
+# --------------------------------
+type OmniAccount_Across_Fill {
+  id: ID!
+  fillDataHash: String!
+  chainId: Int!
+}
+
+type OmniAccount_Across_Deposit {
+  id: ID!
+  nonce: BigInt!
+  chainId: Int!
+}
+
+# --------------------------------
 # Scheduled Orders Entities
 # --------------------------------
 type ScheduledOrders_ExecutionAdded {
