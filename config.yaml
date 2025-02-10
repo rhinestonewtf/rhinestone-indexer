@@ -7,47 +7,58 @@ field_selection:
     - "transactionIndex"
 
 rollback_on_reorg: false
+
 # ------------------- Contracts configurations ---------------------
 # ------------------------------------------------------------------
 
 contracts:
-  - name: Registry
-    handler: src/handlers/Registry.ts
+  - name: AcrossTargetModule
+    handler: src/handlers/AcrossTargetModule.ts
     events:
-      - event: Attested(address indexed moduleAddress, address indexed attester, bytes32 schemaUID, address indexed sstore2Pointer)
-      - event: ModuleRegistration(address indexed implementation)
-      - event: Revoked(address indexed moduleAddress, address indexed revoker, bytes32 schema)
+      - event: event Filled(bytes32 indexed fillDataHash)
 
-  - name: ColdStorageHook
-    handler: src/handlers/ColdStorage.ts
+  - name: AcrossOriginModule
+    handler: src/handlers/AcrossOriginModule .ts
     events:
-      - event: TimelockExecuted(address indexed subAccount, bytes32 hash)
-      - event: TimelockRequested(address indexed subAccount, bytes32 hash, uint256 executeAfter)
+      - event: event Deposited(uint256 indexed nonce)
 
-  - name: ScheduledOrders
-    handler: src/handlers/ScheduledOrders.ts
-    events:
-      - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
-      - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
-      - event: ExecutionsCancelled(address indexed smartAccount)
-
-  - name: ScheduledTransfers
-    handler: src/handlers/ScheduledTransfers.ts
-    events:
-      - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
-      - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
-      - event: ExecutionsCancelled(address indexed smartAccount)
-
-  - name: AutoSavings
-    handler: src/handlers/AutoSavings.ts
-    events:
-      - event: AutoSaveExecuted(address indexed smartAccount, address indexed token, uint256 amountReceived)
-
-  - name: SmartAccount
-    handler: src/handlers/SmartAccount.ts
-    events:
-      - event: ModuleInstalled(uint256 moduleTypeId, address module)
-      - event: ModuleUninstalled(uint256 moduleTypeId, address module)
+  # - name: Registry
+  #   handler: src/handlers/Registry.ts
+  #   events:
+  #     - event: Attested(address indexed moduleAddress, address indexed attester, bytes32 schemaUID, address indexed sstore2Pointer)
+  #     - event: ModuleRegistration(address indexed implementation)
+  #     - event: Revoked(address indexed moduleAddress, address indexed revoker, bytes32 schema)
+  #
+  # - name: ColdStorageHook
+  #   handler: src/handlers/ColdStorage.ts
+  #   events:
+  #     - event: TimelockExecuted(address indexed subAccount, bytes32 hash)
+  #     - event: TimelockRequested(address indexed subAccount, bytes32 hash, uint256 executeAfter)
+  #
+  # - name: ScheduledOrders
+  #   handler: src/handlers/ScheduledOrders.ts
+  #   events:
+  #     - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
+  #     - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
+  #     - event: ExecutionsCancelled(address indexed smartAccount)
+  #
+  # - name: ScheduledTransfers
+  #   handler: src/handlers/ScheduledTransfers.ts
+  #   events:
+  #     - event: ExecutionAdded(address indexed smartAccount, uint256 indexed jobId)
+  #     - event: ExecutionTriggered(address indexed smartAccount, uint256 indexed jobId)
+  #     - event: ExecutionsCancelled(address indexed smartAccount)
+  #
+  # - name: AutoSavings
+  #   handler: src/handlers/AutoSavings.ts
+  #   events:
+  #     - event: AutoSaveExecuted(address indexed smartAccount, address indexed token, uint256 amountReceived)
+  #
+  # - name: SmartAccount
+  #   handler: src/handlers/SmartAccount.ts
+  #   events:
+  #     - event: ModuleInstalled(uint256 moduleTypeId, address module)
+  #     - event: ModuleUninstalled(uint256 moduleTypeId, address module)
 
 unordered_multichain_mode: true
 
@@ -55,200 +66,236 @@ unordered_multichain_mode: true
 # ----------------------------------------------------------------
 
 networks:
+  # Eth Mainnet ---------
+  # ---------------------
+  # - id: 1
+  #   start_block: 21794073
+  #   contracts:
+  #     - name: AcrossOriginModule
+  #       address:
+  #         - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+  #     - name: AcrossTargetModule
+  #       address:
+  #         - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
+
   # Optimism ------------
   # ---------------------
-  - id: 10
-    start_block: 0
-    contracts:
-      - name: Registry
-        address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
-        address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+  # - id: 10
+  #   start_block: 0
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
+  #     - name: OmniAccount
+  #       address:
+  #         - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
 
   # Polygon -------------
   # ---------------------
-  - id: 137
-    start_block: 0
-    contracts:
-      - name: Registry
-        address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
-        address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+  # - id: 137
+  #   start_block: 0
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
+  #     - name: OmniAccount
+  #       address:
+  #         - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
 
   # Arbitrum ------------
   # ---------------------
   - id: 42161
-    start_block: 0
+    start_block: 304600273
     contracts:
-      - name: Registry
+      # - name: Registry
+      #   address:
+      #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+      # - name: ColdStorageHook
+      #   address:
+      #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+      # - name: ScheduledOrders
+      #   address:
+      #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+      # - name: ScheduledTransfers
+      #   address:
+      #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+      # - name: AutoSavings
+      #   address:
+      #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+      # - name: SmartAccount
+      - name: AcrossOriginModule
         address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
+          - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+      - name: AcrossTargetModule
         address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+          - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
 
   # Base ---------------
   # --------------------
   - id: 8453
-    start_block: 0
+    start_block: 26200107
     contracts:
-      - name: Registry
+      # - name: Registry
+      #   address:
+      #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+      # - name: ColdStorageHook
+      #   address:
+      #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+      # - name: ScheduledOrders
+      #   address:
+      #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+      # - name: ScheduledTransfers
+      #   address:
+      #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+      # - name: AutoSavings
+      #   address:
+      #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+      # - name: SmartAccount
+      - name: AcrossOriginModule
         address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
+          - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+      - name: AcrossTargetModule
         address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+          - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
 
   # Avalanche ---------------
   # --------------------
-  - id: 43114
-    start_block: 0
-    contracts:
-      - name: Registry
-        address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
-        address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+  # - id: 43114
+  #   start_block: 0
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
 
   # Gnosis ---------------
   # --------------------
-  - id: 100
-    start_block: 0
-    contracts:
-      - name: Registry
-        address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
-        address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+  # - id: 100
+  #   start_block: 0
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
 
   # BSC ---------------
   # --------------------
-  - id: 56
-    start_block: 0
-    contracts:
-      - name: Registry
-        address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
-        address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+  # - id: 56
+  #   start_block: 0
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
 
   # Sepolia ------------
   # --------------------
-  - id: 11155111
-    start_block: 0
-    contracts:
-      - name: Registry
-        address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
-        address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+  # - id: 11155111
+  #   start_block: 0
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
 
   # Base Sepolia ------------
   # --------------------
   - id: 84532
-    start_block: 0
+    start_block: 21493112
     contracts:
-      - name: Registry
+      # - name: Registry
+      #   address:
+      #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+      # - name: ColdStorageHook
+      #   address:
+      #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+      # - name: ScheduledOrders
+      #   address:
+      #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+      # - name: ScheduledTransfers
+      #   address:
+      #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+      # - name: AutoSavings
+      #   address:
+      #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+      # - name: SmartAccount
+      - name: AcrossOriginModule
         address:
-          - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      - name: ColdStorageHook
+          - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+      - name: AcrossTargetModule
         address:
-          - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      - name: ScheduledOrders
-        address:
-          - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      - name: ScheduledTransfers
-        address:
-          - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      - name: AutoSavings
-        address:
-          - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      - name: SmartAccount
+          - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
