@@ -62,17 +62,20 @@ type Registry_Revoked {
 }
 
 # --------------------------------
-# OmniAccount Entities
+# AcrossOriginModule Entities
 # --------------------------------
-type OmniAccount_Across_Fill {
+type AcrossOriginModule_Deposited {
   id: ID!
-  fillDataHash: String!
+  nonce: BigInt!
   chainId: Int!
 }
 
-type OmniAccount_Across_Deposit {
+# --------------------------------
+# AcrossTargetModule Entities
+# --------------------------------
+type AcrossTargetModule_Filled {
   id: ID!
-  nonce: BigInt!
+  fillDataHash: String!
   chainId: Int!
 }
 
