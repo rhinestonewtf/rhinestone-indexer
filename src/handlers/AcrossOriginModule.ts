@@ -1,4 +1,5 @@
 import { AcrossOriginModule } from "generated";
+import { ORCHESTRATOR_URL } from "../utils/constants";
 
 AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
   const entity = {
@@ -8,4 +9,18 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
   };
 
   context.AcrossOriginModule_Deposited.set(entity);
+
+  await fetch(`${ORCHESTRATOR_URL}/chain-events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": process.env.ORCHESTRATOR_API_KEY,
+    },
+    body: JSON.stringify({
+      event: "Deposited",
+      transaction: event.transaction,
+      block: event.block,
+      nonce: event.params.nonce,
+    }),
+  });
 });
