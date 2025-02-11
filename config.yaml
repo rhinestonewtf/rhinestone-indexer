@@ -18,7 +18,7 @@ contracts:
       - event: event Filled(bytes32 indexed fillDataHash)
 
   - name: AcrossOriginModule
-    handler: src/handlers/AcrossOriginModule .ts
+    handler: src/handlers/AcrossOriginModule.ts
     events:
       - event: event Deposited(uint256 indexed nonce)
 
