@@ -14,7 +14,7 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": process.env.ORCHESTRATOR_API_KEY,
+      "x-api-key": process.env.ORCHESTRATOR_API_KEY!,
     },
     body: JSON.stringify({
       event: "Deposited",
