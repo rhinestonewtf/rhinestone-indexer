@@ -17,10 +17,14 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
       "x-api-key": process.env.ORCHESTRATOR_API_KEY!,
     },
     body: JSON.stringify({
-      event: "Deposited",
-      transaction: event.transaction,
-      block: event.block,
-      nonce: event.params.nonce,
+      eventType: "Deposited",
+      chainId: event.chainId,
+      blockNumber: event.block.number,
+      blockTimestamp: event.block.timestamp,
+      params: {
+        txHash: event.transaction.hash,
+        nonce: event.params.nonce,
+      }
     }),
   });
 });
