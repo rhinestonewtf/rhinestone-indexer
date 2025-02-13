@@ -17,10 +17,14 @@ AcrossTargetModule.Filled.handler(async ({ event, context }) => {
       "x-api-key": process.env.ORCHESTRATOR_API_KEY!,
     },
     body: JSON.stringify({
-      event: "Filled",
-      transaction: event.transaction,
-      block: event.block,
-      fillDataHash: event.params.fillDataHash,
+      eventType: "Filled",
+      chainId: event.chainId,
+      blockNumber: event.block.number,
+      blockTimestamp: event.block.timestamp,
+      params: {
+        txHash: event.transaction.hash,
+        depositId: event.params.fillDataHash,
+      }
     }),
   });
 });
