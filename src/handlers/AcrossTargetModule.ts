@@ -14,7 +14,7 @@ AcrossTargetModule.Filled.handler(async ({ event, context }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": process.env.ORCHESTRATOR_API_KEY!,
+      "x-api-key": process.env.ENVIO_ORCHESTRATOR_API_KEY!,
     },
     body: JSON.stringify({
       eventType: "Filled",
