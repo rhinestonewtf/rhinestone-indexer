@@ -151,10 +151,10 @@ networks:
       # - name: SmartAccount
       - name: AcrossOriginModule
         address:
-          - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+          - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
       - name: AcrossTargetModule
         address:
-          - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
+          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
 
   # Base ---------------
   # --------------------
@@ -179,10 +179,10 @@ networks:
       # - name: SmartAccount
       - name: AcrossOriginModule
         address:
-          - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+          - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
       - name: AcrossTargetModule
         address:
-          - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
+          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
 
   # Avalanche ---------------
   # --------------------
@@ -295,7 +295,7 @@ networks:
       # - name: SmartAccount
       - name: AcrossOriginModule
         address:
-          - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
+          - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
       - name: AcrossTargetModule
         address:
-          - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
+          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
