@@ -13,7 +13,7 @@ rollback_on_reorg: false
 
 contracts:
   - name: RhinestoneSpokePool
-    handler: src/handlers/RhinestoneSpokePool .ts
+    handler: src/handlers/RhinestoneSpokePool.ts
     events:
       - event: event Filled(uint256 indexed nonce)
 
