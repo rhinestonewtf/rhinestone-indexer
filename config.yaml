@@ -20,7 +20,7 @@ contracts:
   - name: AcrossOriginModule
     handler: src/handlers/AcrossOriginModule.ts
     events:
-      - event: event Deposited(uint256 indexed account, uint256 indexed nonce)
+      - event: event Deposited(address indexed account, uint256 indexed nonce)
 
   # - name: Registry
   #   handler: src/handlers/Registry.ts
@@ -128,7 +128,8 @@ networks:
       #   address:
       #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
       # - name: SmartAccount
-      - address:
+      - name: AcrossOriginModule
+        address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
       - name: AcrossTargetModule
