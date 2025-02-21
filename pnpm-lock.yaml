@@ -35,8 +35,8 @@ importers:
         specifier: 10.2.0
         version: 10.2.0
       ts-mocha:
-        specifier: ^10.0.0
-        version: 10.0.0(mocha@10.2.0)
+        specifier: ^10.1.0
+        version: 10.1.0(mocha@10.2.0)
       ts-node:
         specifier: 10.9.1
         version: 10.9.1(@types/node@20.8.8)(typescript@5.2.2)
@@ -1268,12 +1268,12 @@ packages:
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
-  ts-mocha@10.0.0:
-    resolution: {integrity: sha512-VRfgDO+iiuJFlNB18tzOfypJ21xn2xbuZyDvJvqpTbWgkAgD17ONGr8t+Tl8rcBtOBdjXp5e/Rk+d39f7XBHRw==}
+  ts-mocha@10.1.0:
+    resolution: {integrity: sha512-T0C0Xm3/WqCuF2tpa0GNGESTBoKZaiqdUP8guNv4ZY316AFXlyidnrzQ1LUrCT0Wb1i3J0zFTgOh/55Un44WdA==}
     engines: {node: '>= 6.X.X'}
     hasBin: true
     peerDependencies:
-      mocha: ^3.X.X || ^4.X.X || ^5.X.X || ^6.X.X || ^7.X.X || ^8.X.X || ^9.X.X || ^10.X.X
+      mocha: ^3.X.X || ^4.X.X || ^5.X.X || ^6.X.X || ^7.X.X || ^8.X.X || ^9.X.X || ^10.X.X || ^11.X.X
 
   ts-node@10.9.1:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
@@ -2609,7 +2609,7 @@ snapshots:
 
   tr46@0.0.3: {}
 
-  ts-mocha@10.0.0(mocha@10.2.0):
+  ts-mocha@10.1.0(mocha@10.2.0):
     dependencies:
       mocha: 10.2.0
       ts-node: 7.0.1

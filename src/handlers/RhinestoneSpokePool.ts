@@ -23,7 +23,7 @@ RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
       blockTimestamp: event.block.timestamp,
       params: {
         txHash: event.transaction.hash,
-        nonce: event.params.nonce,
+        nonce: event.params.nonce.toString(),
       },
     }),
   });
