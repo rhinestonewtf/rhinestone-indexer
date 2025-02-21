@@ -67,6 +67,7 @@ type Registry_Revoked {
 type AcrossOriginModule_Deposited {
   id: ID!
   nonce: BigInt!
+  account: String!
   chainId: Int!
 }
 
@@ -75,7 +76,7 @@ type AcrossOriginModule_Deposited {
 # --------------------------------
 type AcrossTargetModule_Filled {
   id: ID!
-  fillDataHash: String!
+  nonce: BigInt!
   chainId: Int!
 }
 

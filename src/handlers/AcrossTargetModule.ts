@@ -4,7 +4,7 @@ import { ORCHESTRATOR_URL } from "../utils/constants";
 AcrossTargetModule.Filled.handler(async ({ event, context }) => {
   const entity = {
     id: `${event.transaction.hash}_${event.logIndex}`,
-    fillDataHash: event.params.fillDataHash,
+    nonce: event.params.nonce,
     chainId: event.chainId,
   };
 
@@ -23,8 +23,8 @@ AcrossTargetModule.Filled.handler(async ({ event, context }) => {
       blockTimestamp: event.block.timestamp,
       params: {
         txHash: event.transaction.hash,
-        depositId: event.params.fillDataHash,
-      }
+        nonce: event.params.nonce,
+      },
     }),
   });
 });

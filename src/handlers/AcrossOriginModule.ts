@@ -5,6 +5,7 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
   const entity = {
     id: `${event.transaction.hash}_${event.logIndex}`,
     nonce: event.params.nonce,
+    account: event.params.account,
     chainId: event.chainId,
   };
 
@@ -23,8 +24,9 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
       blockTimestamp: event.block.timestamp,
       params: {
         txHash: event.transaction.hash,
+        account: event.params.account,
         nonce: event.params.nonce,
-      }
+      },
     }),
   });
 });
