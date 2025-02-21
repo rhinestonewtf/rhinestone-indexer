@@ -72,9 +72,9 @@ type AcrossOriginModule_Deposited {
 }
 
 # --------------------------------
-# AcrossTargetModule Entities
+# RhinestoneSpokePool Entities
 # --------------------------------
-type AcrossTargetModule_Filled {
+type RhinestoneSpokePool_Filled {
   id: ID!
   nonce: BigInt!
   chainId: Int!

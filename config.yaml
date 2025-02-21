@@ -12,8 +12,8 @@ rollback_on_reorg: false
 # ------------------------------------------------------------------
 
 contracts:
-  - name: AcrossTargetModule
-    handler: src/handlers/AcrossTargetModule.ts
+  - name: RhinestoneSpokePool
+    handler: src/handlers/RhinestoneSpokePool .ts
     events:
       - event: event Filled(uint256 indexed nonce)
 
@@ -103,9 +103,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Polygon -------------
   # ---------------------
@@ -132,9 +132,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Arbitrum ------------
   # ---------------------
@@ -161,9 +161,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Base ---------------
   # --------------------
@@ -190,9 +190,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Avalanche ---------------
   # --------------------
@@ -285,9 +285,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Base Sepolia ------------
   # --------------------
@@ -314,9 +314,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Op Sepolia ------------
   # --------------------
@@ -343,9 +343,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Arb Sepolia ------------
   # --------------------
@@ -372,9 +372,9 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
 
   # Polygon Amoy ------------
   # --------------------
@@ -401,6 +401,6 @@ networks:
         address:
           - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
           - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-      - name: AcrossTargetModule
+      - name: RhinestoneSpokePool
         address:
-          - "0x90834033cde930a3b1d93452f8fd7674b4c5a35f"
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"

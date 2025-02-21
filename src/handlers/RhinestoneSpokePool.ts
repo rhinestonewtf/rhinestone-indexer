@@ -1,14 +1,14 @@
-import { AcrossTargetModule } from "generated";
+import { RhinestoneSpokePool } from "generated";
 import { ORCHESTRATOR_URL } from "../utils/constants";
 
-AcrossTargetModule.Filled.handler(async ({ event, context }) => {
+RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
   const entity = {
     id: `${event.transaction.hash}_${event.logIndex}`,
     nonce: event.params.nonce,
     chainId: event.chainId,
   };
 
-  context.AcrossTargetModule_Filled.set(entity);
+  context.RhinestoneSpokePool_Filled.set(entity);
 
   await fetch(`${ORCHESTRATOR_URL}/chain-events`, {
     method: "POST",
