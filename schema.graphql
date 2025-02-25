@@ -67,7 +67,6 @@ type Registry_Revoked {
 type AcrossOriginModule_Deposited {
   id: ID!
   nonce: BigInt!
-  account: String!
   chainId: Int!
 }
 
