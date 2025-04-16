@@ -68,15 +68,19 @@ unordered_multichain_mode: true
 networks:
   # Eth Mainnet ---------
   # ---------------------
-  # - id: 1
-  #   start_block: 21794073
-  #   contracts:
-  #     - name: AcrossOriginModule
-  #       address:
-  #         - "0x5284de1665abaaba47b58cae43f6607ce5cb6340"
-  #     - name: AcrossTargetModule
-  #       address:
-  #         - "0x338006bb2c9b19e65a66a86f5688da02e6b41846"
+  - id: 1
+    start_block: 22026365
+    contracts:
+      - name: AcrossOriginModule
+        address:
+          - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
+          - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
+          - "0x0000000000AFc904aE9860D9c4B96D7c529c58b8"
+          - "0x000000000043ff16d5776c7F0f65Ec485C17Ca04"
+      - name: RhinestoneSpokePool
+        address:
+          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
+          - "0x000000000060f6e853447881951574CDd0663530"
 
   # Optimism ------------
   # ---------------------
@@ -101,13 +105,10 @@ networks:
       # - name: SmartAccount
       - name: AcrossOriginModule
         address:
-          - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
-          - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
           - "0x0000000000AFc904aE9860D9c4B96D7c529c58b8"
           - "0x000000000043ff16d5776c7F0f65Ec485C17Ca04"
       - name: RhinestoneSpokePool
         address:
-          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
           - "0x000000000060f6e853447881951574CDd0663530"
 
   # Polygon -------------
