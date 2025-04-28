@@ -2,15 +2,6 @@ import { AcrossOriginModule } from "generated";
 import { ORCHESTRATOR_URL } from "../utils/constants";
 
 AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
-  // const entity = {
-  //   id: `${event.transaction.hash}_${event.logIndex}`,
-  //   nonce: event.params.nonce,
-  //   account: event.params.account,
-  //   chainId: event.chainId,
-  // };
-  //
-  // context.AcrossOriginModule_Deposited.set(entity);
-
   fetch(`${ORCHESTRATOR_URL}/chain-events`, {
     method: "POST",
     headers: {
@@ -27,5 +18,14 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
         depositId: event.params.nonce.toString(),
       },
     }),
+  });
+
+  context.AcrossOriginModule_Deposited.set({
+    id: `${event.transaction.hash}_${event.logIndex}`,
+    nonce: event.params.nonce,
+    chainId: event.chainId,
+    txHash: event.transaction.hash,
+    sender: event.transaction.from!,
+    timestamp: BigInt(event.block.timestamp),
   });
 });

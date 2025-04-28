@@ -2,14 +2,6 @@ import { RhinestoneSpokePool } from "generated";
 import { ORCHESTRATOR_URL } from "../utils/constants";
 
 RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
-  // const entity = {
-  //   id: `${event.transaction.hash}_${event.logIndex}`,
-  //   nonce: event.params.nonce,
-  //   chainId: event.chainId,
-  // };
-  //
-  // context.RhinestoneSpokePool_Filled.set(entity);
-
   fetch(`${ORCHESTRATOR_URL}/chain-events`, {
     method: "POST",
     headers: {
@@ -26,5 +18,14 @@ RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
         nonce: event.params.nonce.toString(),
       },
     }),
+  });
+
+  context.RhinestoneSpokePool_Filled.set({
+    id: `${event.transaction.hash}_${event.logIndex}`,
+    nonce: event.params.nonce,
+    chainId: event.chainId,
+    txHash: event.transaction.hash,
+    sender: event.transaction.from!,
+    timestamp: BigInt(event.block.timestamp),
   });
 });

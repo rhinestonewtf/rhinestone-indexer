@@ -68,6 +68,9 @@ type AcrossOriginModule_Deposited {
   id: ID!
   nonce: BigInt!
   chainId: Int!
+  txHash: String!
+  sender: String!
+  timestamp: BigInt!
 }
 
 # --------------------------------
@@ -77,6 +80,9 @@ type RhinestoneSpokePool_Filled {
   id: ID!
   nonce: BigInt!
   chainId: Int!
+  txHash: String!
+  sender: String!
+  timestamp: BigInt!
 }
 
 # --------------------------------
