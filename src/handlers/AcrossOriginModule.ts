@@ -2,16 +2,16 @@ import { AcrossOriginModule } from "generated";
 import { ORCHESTRATOR_URL } from "../utils/constants";
 
 AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
-  const entity = {
-    id: `${event.transaction.hash}_${event.logIndex}`,
-    nonce: event.params.nonce,
-    account: event.params.account,
-    chainId: event.chainId,
-  };
+  // const entity = {
+  //   id: `${event.transaction.hash}_${event.logIndex}`,
+  //   nonce: event.params.nonce,
+  //   account: event.params.account,
+  //   chainId: event.chainId,
+  // };
+  //
+  // context.AcrossOriginModule_Deposited.set(entity);
 
-  context.AcrossOriginModule_Deposited.set(entity);
-
-  await fetch(`${ORCHESTRATOR_URL}/chain-events`, {
+  fetch(`${ORCHESTRATOR_URL}/chain-events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
