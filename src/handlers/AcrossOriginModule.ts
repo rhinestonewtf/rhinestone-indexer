@@ -22,14 +22,14 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
     body,
   });
 
-  // fetch(`${ORCHESTRATOR_DEV_URL}/chain-events`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "x-api-key": process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
-  //   },
-  //   body,
-  // });
+  fetch(`${ORCHESTRATOR_DEV_URL}/chain-events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
+    },
+    body,
+  });
   //
   // context.AcrossOriginModule_Deposited.set({
   //   id: `${event.transaction.hash}_${event.logIndex}`,
