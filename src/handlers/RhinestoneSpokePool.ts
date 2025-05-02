@@ -22,21 +22,21 @@ RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
     body,
   });
 
-  fetch(`${ORCHESTRATOR_DEV_URL}/chain-events`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
-    },
-    body,
-  });
-
-  context.RhinestoneSpokePool_Filled.set({
-    id: `${event.transaction.hash}_${event.logIndex}`,
-    nonce: event.params.nonce,
-    chainId: event.chainId,
-    txHash: event.transaction.hash,
-    sender: event.transaction.from!,
-    timestamp: BigInt(event.block.timestamp),
-  });
+  // fetch(`${ORCHESTRATOR_DEV_URL}/chain-events`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "x-api-key": process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
+  //   },
+  //   body,
+  // });
+  //
+  // context.RhinestoneSpokePool_Filled.set({
+  //   id: `${event.transaction.hash}_${event.logIndex}`,
+  //   nonce: event.params.nonce,
+  //   chainId: event.chainId,
+  //   txHash: event.transaction.hash,
+  //   sender: event.transaction.from!,
+  //   timestamp: BigInt(event.block.timestamp),
+  // });
 });
