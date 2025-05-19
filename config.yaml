@@ -69,7 +69,7 @@ networks:
   # Eth Mainnet ---------
   # ---------------------
   - id: 1
-    start_block: 22026365
+    start_block: 22516889
     contracts:
       - name: AcrossOriginModule
         address:
@@ -85,7 +85,7 @@ networks:
   # Optimism ------------
   # ---------------------
   - id: 10
-    start_block: 132268684
+    start_block: 136028769
     contracts:
       # - name: Registry
       #   address:
@@ -114,7 +114,7 @@ networks:
   # Polygon -------------
   # ---------------------
   - id: 137
-    start_block: 68191796
+    start_block: 71707503
     contracts:
       # - name: Registry
       #   address:
@@ -146,7 +146,7 @@ networks:
   # Arbitrum ------------
   # ---------------------
   - id: 42161
-    start_block: 304600273
+    start_block: 338304829
     contracts:
       # - name: Registry
       #   address:
@@ -178,7 +178,7 @@ networks:
   # Base ---------------
   # --------------------
   - id: 8453
-    start_block: 26200107
+    start_block: 30433500
     contracts:
       # - name: Registry
       #   address:
@@ -276,7 +276,7 @@ networks:
   # Sepolia ------------
   # --------------------
   - id: 11155111
-    start_block: 7754375
+    start_block: 8360485
     contracts:
       # - name: Registry
       #   address:
@@ -308,7 +308,7 @@ networks:
   # Base Sepolia ------------
   # --------------------
   - id: 84532
-    start_block: 21493112
+    start_block: 25944049
     contracts:
       # - name: Registry
       #   address:
@@ -340,7 +340,7 @@ networks:
   # Op Sepolia ------------
   # --------------------
   - id: 11155420
-    start_block: 24166829
+    start_block: 27926932
     contracts:
       # - name: Registry
       #   address:
@@ -372,7 +372,7 @@ networks:
   # Arb Sepolia ------------
   # --------------------
   - id: 421614
-    start_block: 125910599
+    start_block: 154564441
     contracts:
       # - name: Registry
       #   address:
@@ -404,7 +404,7 @@ networks:
   # Polygon Amoy ------------
   # --------------------
   - id: 80002
-    start_block: 18342943
+    start_block: 21857263
     contracts:
       # - name: Registry
       #   address:
