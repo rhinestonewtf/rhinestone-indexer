@@ -1,8 +1,9 @@
 import { AcrossOriginModule } from "generated";
 import { ORCHESTRATOR_DEV_URL, ORCHESTRATOR_URL } from "../utils/constants";
+import { getIsDev, sendToOrchestrator } from "../utils/orchestrator";
 
 AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
-  const body = JSON.stringify({
+  const data = {
     eventType: "Deposited",
     chainId: event.chainId,
     blockNumber: event.block.number,
@@ -11,25 +12,41 @@ AcrossOriginModule.Deposited.handler(async ({ event, context }) => {
       txHash: event.transaction.hash,
       depositId: event.params.nonce.toString(),
     },
-  });
+  };
 
-  fetch(`${ORCHESTRATOR_URL}/chain-events`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.ENVIO_ORCHESTRATOR_API_KEY!,
-    },
-    body,
-  });
+  const isDev = getIsDev({ tx: event.transaction });
 
-  fetch(`${ORCHESTRATOR_DEV_URL}/chain-events`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
-    },
-    body,
-  });
+  if (isDev) {
+    await sendToOrchestrator({
+      data,
+      orchestratorUrl: ORCHESTRATOR_DEV_URL,
+      orchestratorApiKey: process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
+    });
+  } else {
+    await sendToOrchestrator({
+      data,
+      orchestratorUrl: ORCHESTRATOR_URL,
+      orchestratorApiKey: process.env.ENVIO_ORCHESTRATOR_API_KEY!,
+    });
+  }
+
+  // fetch(`${ORCHESTRATOR_URL}/chain-events`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "x-api-key": process.env.ENVIO_ORCHESTRATOR_API_KEY!,
+  //   },
+  //   body,
+  // });
+  //
+  // fetch(`${ORCHESTRATOR_DEV_URL}/chain-events`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "x-api-key": process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
+  //   },
+  //   body,
+  // });
   //
   // context.AcrossOriginModule_Deposited.set({
   //   id: `${event.transaction.hash}_${event.logIndex}`,
