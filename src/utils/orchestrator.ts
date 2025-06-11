@@ -16,26 +16,26 @@ export const getEnvironment = ({ nonce }: { nonce: bigint }): Environment => {
       return {
         name: "prod",
         url: ORCHESTRATOR_URL,
-        apiKey: process.env.ORCHESTRATOR_API_KEY!,
+        apiKey: process.env.ENVIO_ORCHESTRATOR_API_KEY!,
       };
     case 2n:
       return {
         name: "dev",
         url: ORCHESTRATOR_DEV_URL,
-        apiKey: process.env.ORCHESTRATOR_DEV_API_KEY!,
+        apiKey: process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
       };
     case 3n:
       return {
         name: "staging",
         url: ORCHESTRATOR_STAGING_URL,
-        apiKey: process.env.ORCHESTRATOR_STAGING_API_KEY!,
+        apiKey: process.env.ENVIO_ORCHESTRATOR_STAGING_API_KEY!,
       };
     default:
       // default to prod
       return {
         name: "prod",
         url: ORCHESTRATOR_URL,
-        apiKey: process.env.ORCHESTRATOR_API_KEY!,
+        apiKey: process.env.ENVIO_ORCHESTRATOR_API_KEY!,
       };
   }
 };
@@ -47,7 +47,7 @@ export const sendToOrchestrator = async ({
   data: any;
   environment: Environment;
 }) => {
-  await fetch(`${environment.url}/chain-events`, {
+  const res = await fetch(`${environment.url}/chain-events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,4 +55,5 @@ export const sendToOrchestrator = async ({
     },
     body: JSON.stringify(data),
   });
+  console.log(res);
 };
