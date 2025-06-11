@@ -11,7 +11,7 @@ type Environment = {
 };
 
 export const getEnvironment = ({ nonce }: { nonce: bigint }): Environment => {
-  switch (nonce) {
+  switch (BigInt(nonce.toString().slice(0, 1))) {
     case 1n:
       return {
         name: "prod",
