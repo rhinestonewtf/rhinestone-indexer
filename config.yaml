@@ -69,7 +69,7 @@ networks:
   # Eth Mainnet ---------
   # ---------------------
   - id: 1
-    start_block: 22516889
+    start_block: 22681325
     contracts:
       - name: AcrossOriginModule
         address:
@@ -85,7 +85,7 @@ networks:
   # Optimism ------------
   # ---------------------
   - id: 10
-    start_block: 136028769
+    start_block: 137023115
     contracts:
       # - name: Registry
       #   address:
@@ -114,7 +114,7 @@ networks:
   # Polygon -------------
   # ---------------------
   - id: 137
-    start_block: 71707503
+    start_block: 72636396
     contracts:
       # - name: Registry
       #   address:
@@ -146,7 +146,7 @@ networks:
   # Arbitrum ------------
   # ---------------------
   - id: 42161
-    start_block: 338304829
+    start_block: 346228255
     contracts:
       # - name: Registry
       #   address:
@@ -178,7 +178,7 @@ networks:
   # Base ---------------
   # --------------------
   - id: 8453
-    start_block: 30433500
+    start_block: 31427835
     contracts:
       # - name: Registry
       #   address:
@@ -276,7 +276,7 @@ networks:
   # Sepolia ------------
   # --------------------
   - id: 11155111
-    start_block: 8360485
+    start_block: 8525411
     contracts:
       # - name: Registry
       #   address:
@@ -308,7 +308,7 @@ networks:
   # Base Sepolia ------------
   # --------------------
   - id: 84532
-    start_block: 25944049
+    start_block: 26938395
     contracts:
       # - name: Registry
       #   address:
@@ -340,7 +340,7 @@ networks:
   # Op Sepolia ------------
   # --------------------
   - id: 11155420
-    start_block: 27926932
+    start_block: 28921279
     contracts:
       # - name: Registry
       #   address:
@@ -372,7 +372,7 @@ networks:
   # Arb Sepolia ------------
   # --------------------
   - id: 421614
-    start_block: 154564441
+    start_block: 162453156
     contracts:
       # - name: Registry
       #   address:
@@ -401,34 +401,34 @@ networks:
           - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
           - "0x000000000060f6e853447881951574CDd0663530"
 
-  # Polygon Amoy ------------
-  # --------------------
-  - id: 80002
-    start_block: 21857263
-    contracts:
-      # - name: Registry
-      #   address:
-      #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
-      # - name: ColdStorageHook
-      #   address:
-      #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
-      # - name: ScheduledOrders
-      #   address:
-      #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
-      # - name: ScheduledTransfers
-      #   address:
-      #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
-      # - name: AutoSavings
-      #   address:
-      #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
-      # - name: SmartAccount
-      - name: AcrossOriginModule
-        address:
-          - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
-          - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
-          - "0x0000000000AFc904aE9860D9c4B96D7c529c58b8"
-          - "0x000000000043ff16d5776c7F0f65Ec485C17Ca04"
-      - name: RhinestoneSpokePool
-        address:
-          - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
-          - "0x000000000060f6e853447881951574CDd0663530"
+  # # Polygon Amoy ------------
+  # # --------------------
+  # - id: 80002
+  #   start_block: 21857263
+  #   contracts:
+  #     # - name: Registry
+  #     #   address:
+  #     #     - "0x0000000000E23E0033C3e93D9D4eBc2FF2AB2AEF"
+  #     # - name: ColdStorageHook
+  #     #   address:
+  #     #     - "0x7E31543b269632ddc55a23553f902f84C9DD8454"
+  #     # - name: ScheduledOrders
+  #     #   address:
+  #     #     - "0x40dc90D670C89F322fa8b9f685770296428DCb6b"
+  #     # - name: ScheduledTransfers
+  #     #   address:
+  #     #     - "0xA8E374779aeE60413c974b484d6509c7E4DDb6bA"
+  #     # - name: AutoSavings
+  #     #   address:
+  #     #     - "0x6AE48bD83B6bdc8489584Ea0814086f963d1BD95"
+  #     # - name: SmartAccount
+  #     - name: AcrossOriginModule
+  #       address:
+  #         - "0x8b7f8f3a00cde57c9c118c3edeadac5275c945b2"
+  #         - "0x871950da2680962c7a2bd4923e3e1fc1b08c91fa"
+  #         - "0x0000000000AFc904aE9860D9c4B96D7c529c58b8"
+  #         - "0x000000000043ff16d5776c7F0f65Ec485C17Ca04"
+  #     - name: RhinestoneSpokePool
+  #       address:
+  #         - "0xea34faadb44f6078c24cb82d6be3185a262ddee6"
+  #         - "0x000000000060f6e853447881951574CDd0663530"

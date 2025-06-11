@@ -1,6 +1,5 @@
 import { RhinestoneSpokePool } from "generated";
-import { ORCHESTRATOR_DEV_URL, ORCHESTRATOR_URL } from "../utils/constants";
-import { getIsDev, sendToOrchestrator } from "../utils/orchestrator";
+import { getEnvironment, sendToOrchestrator } from "../utils/orchestrator";
 
 RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
   const data = {
@@ -14,21 +13,12 @@ RhinestoneSpokePool.Filled.handler(async ({ event, context }) => {
     },
   };
 
-  const isDev = getIsDev({ tx: event.transaction });
+  const environment = getEnvironment({ nonce: event.params.nonce });
 
-  if (isDev) {
-    await sendToOrchestrator({
-      data,
-      orchestratorUrl: ORCHESTRATOR_DEV_URL,
-      orchestratorApiKey: process.env.ENVIO_ORCHESTRATOR_DEV_API_KEY!,
-    });
-  } else {
-    await sendToOrchestrator({
-      data,
-      orchestratorUrl: ORCHESTRATOR_URL,
-      orchestratorApiKey: process.env.ENVIO_ORCHESTRATOR_API_KEY!,
-    });
-  }
+  await sendToOrchestrator({
+    data,
+    environment,
+  });
 
   // fetch(`${ORCHESTRATOR_URL}/chain-events`, {
   //   method: "POST",
