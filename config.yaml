@@ -69,7 +69,7 @@ networks:
   # Eth Mainnet ---------
   # ---------------------
   - id: 1
-    start_block: 22681425
+    start_block: 22682804
     contracts:
       - name: AcrossOriginModule
         address:
@@ -85,7 +85,7 @@ networks:
   # Optimism ------------
   # ---------------------
   - id: 10
-    start_block: 137024115
+    start_block: 137032046
     contracts:
       # - name: Registry
       #   address:
@@ -114,7 +114,7 @@ networks:
   # Polygon -------------
   # ---------------------
   - id: 137
-    start_block: 72636496
+    start_block: 72644802
     contracts:
       # - name: Registry
       #   address:
@@ -146,7 +146,7 @@ networks:
   # Arbitrum ------------
   # ---------------------
   - id: 42161
-    start_block: 346228355
+    start_block: 346299521
     contracts:
       # - name: Registry
       #   address:
@@ -178,7 +178,7 @@ networks:
   # Base ---------------
   # --------------------
   - id: 8453
-    start_block: 31427935
+    start_block: 31436782
     contracts:
       # - name: Registry
       #   address:
@@ -276,7 +276,7 @@ networks:
   # Sepolia ------------
   # --------------------
   - id: 11155111
-    start_block: 8525411
+    start_block: 8526895
     contracts:
       # - name: Registry
       #   address:
@@ -308,7 +308,7 @@ networks:
   # Base Sepolia ------------
   # --------------------
   - id: 84532
-    start_block: 26938395
+    start_block: 26947320
     contracts:
       # - name: Registry
       #   address:
@@ -340,7 +340,7 @@ networks:
   # Op Sepolia ------------
   # --------------------
   - id: 11155420
-    start_block: 28921279
+    start_block: 28930201
     contracts:
       # - name: Registry
       #   address:
@@ -372,7 +372,7 @@ networks:
   # Arb Sepolia ------------
   # --------------------
   - id: 421614
-    start_block: 162453156
+    start_block: 162524402
     contracts:
       # - name: Registry
       #   address:
